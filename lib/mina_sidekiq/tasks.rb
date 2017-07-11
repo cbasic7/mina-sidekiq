@@ -79,8 +79,8 @@ namespace :sidekiq do
     for_each_process do |pid_file, idx|
       command %{
         if [ -f #{pid_file} ] && kill -0 `cat #{pid_file}`> /dev/null 2>&1; then
-          cd "#{deploy_to}/#{current_path}"
-          #{echo_cmd %{#{sidekiqctl} quiet #{pid_file}} }
+          cd "#{fetch(:current_path)}"
+          #{fetch(:sidekiqctl)} quiet #{pid_file}
         else
           echo 'Skip quiet command (no pid file found)'
         fi
