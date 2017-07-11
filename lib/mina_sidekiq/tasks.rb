@@ -75,7 +75,7 @@ namespace :sidekiq do
   # ### sidekiq:quiet
   desc "Quiet sidekiq (stop accepting new work)"
   task :quiet => :environment do
-    queue %[echo "-----> Quiet sidekiq (stop accepting new work)"]
+    command %[echo "-----> Quiet sidekiq (stop accepting new work)"]
     for_each_process do |pid_file, idx|
       command %{
         if [ -f #{pid_file} ] && kill -0 `cat #{pid_file}`> /dev/null 2>&1; then
