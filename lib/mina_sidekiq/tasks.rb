@@ -83,7 +83,7 @@ namespace :sidekiq do
           #{fetch(:sidekiqctl)} quiet #{pid_file}
         else
           echo 'Skip quiet command (no pid file found)'
-        fi
+        fi && cd -
       }
     end
   end
