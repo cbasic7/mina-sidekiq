@@ -81,9 +81,10 @@ namespace :sidekiq do
         if [ -f #{pid_file} ] && kill -0 `cat #{pid_file}`> /dev/null 2>&1; then
           cd "#{fetch(:current_path)}"
           #{fetch(:sidekiqctl)} quiet #{pid_file}
+          cd -
         else
           echo 'Skip quiet command (no pid file found)'
-        fi && cd -
+        fi
       }
     end
   end
